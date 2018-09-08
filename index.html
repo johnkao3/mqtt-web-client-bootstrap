@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bootstrap_MQTT</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="host">Host</label>
+            <input type="text" class="form-control" id="host">
+            <small class="form-text text-muted">MQTT Broker IP or Domain Name</small>
+          </div>
+          <div class="form-group">
+            <label for="port">Port</label>
+            <input type="text" class="form-control" id="port">
+            <small class="form-text text-muted">MQTT Broker Web Sockets Port</small>
+          </div>
+          <div class="form-group">
+            <label for="clientId">ClientID</label>
+            <input type="text" class="form-control" id="clientId">
+            <small class="form-text text-muted"></small>
+          </div>   
+        </div>
+        <!-- MQTT Connect Data -->
+        <div class="col-6">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password">
+          </div>
+          <button class="btn btn-primary" id="mqttConnect">連線</button>
+          <button class="btn btn-danger d-none" id="mqttDisconnect">中斷連線</button>
+          <br>
+          連線狀態: <span class="badge badge-pill badge-danger" id="connected">尚未連線</span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <label for="topic">Sub Topic</label>
+            <input type="text" class="form-control" id="topic" value="/demo">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">QoS</label>
+            <select class="form-control" id="sub-qos">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-block" id="mqttSubscribe">Subscribe</button>      
+          <h4>Subscribe List</h4>
+          <div id="subList"></div>
+        </div>
+        <div class="col-9">
+          <div class="form-group">
+            <label for="pub_topic">Pub Topic</label>
+            <input type="text" class="form-control" id="pub-topic" value="/demo">
+          </div>
+          <div class="form-group">
+            <label for="msg">Pub Message</label>
+            <input type="text" class="form-control" id="msg" value="Hello MQTT Client">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">QoS</label>
+            <select class="form-control" id="pub-qos">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-block" id="mqttPublish">Publish</button>      
+          <h4>Subscribe Message List</h4>
+          <div id="msgList"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- Lodash -->
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script src="./js/app.js"></script>
+</html>
